@@ -1,0 +1,10 @@
+<h1>Upload a new file</h1>
+
+<%= form_with model: @upload, url: uploads_path, method: :post do |f| %>
+  <%= f.label :file_name %>
+  <%= f.text_field :file_name %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.file_field :file %>
+  <%= f.submit 'Upload' %>
+<% end %>
