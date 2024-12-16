@@ -1,0 +1,18 @@
+<h1>Your Uploads</h1>
+
+<% if @uploads.any? %>
+  <ul>
+    <% @uploads.each do |upload| %>
+      <li>
+        <%= upload.file_name %>
+        <%= upload.description %>
+        <%# link_to 'Download', upload.file.url %>
+        <%= button_to 'Delete', upload_path(upload), method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You don't have any uploads yet.</p>
+<% end %> 
+
+<%= link_to 'Upload a new file', new_upload_path %>

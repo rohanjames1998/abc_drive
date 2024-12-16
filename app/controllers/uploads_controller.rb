@@ -13,12 +13,17 @@ class UploadsController < ApplicationController
     service = Uploads::Create.call(upload_params, current_user)
 
     if service.success?
-      flash[:notice] = "File uploaded successfully"
-      redirect_to uploads_path
+      redirect_to uploads_path, notice: "File uploaded successfully"
     else
       flash.now[:alert] = service.errors.full_messages.join(", ")
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @upload = Upload.find(params[:id])
+    @upload.discard
+    redirect_to uploads_path, notice: "File deleted successfully"
   end
 
   private
