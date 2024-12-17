@@ -10,12 +10,12 @@ class UploadsController < ApplicationController
   end
 
   def create
-    service = Uploads::Create.call(upload_params, current_user)
+    upload = current_user.uploads.new(upload_params)
 
-    if service.success?
+    if upload.save
       redirect_to uploads_path, notice: "File uploaded successfully"
     else
-      flash.now[:alert] = service.errors.full_messages.join(", ")
+      flash.now[:alert] = upload.errors.full_messages.join(", ")
       render :new, status: :unprocessable_entity
     end
   end
