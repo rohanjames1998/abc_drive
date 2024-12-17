@@ -27,20 +27,20 @@ Open your terminal and run the following command to install Ruby version 3.1.2:
 rbenv install 3.1.2
 ```
 
-### 3. Set Ruby Version Locally
-
-Configure your project to use Ruby 3.1.2 by setting the local Ruby version:
-
-```bash
-rbenv local 3.1.2
-```
-
-### 4. Navigate to the Repository Directory
+### 3. Navigate to the Repository Directory
 
 Change to your project's directory:
 
 ```bash
 cd path/to/your/repo
+```
+
+### 4. Set Ruby Version Locally
+
+Configure your project to use Ruby 3.1.2 by setting the local Ruby version:
+
+```bash
+rbenv local 3.1.2
 ```
 
 ### 5. Install Bundler Version 2.4.8
