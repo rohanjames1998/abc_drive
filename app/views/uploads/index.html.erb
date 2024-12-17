@@ -1,13 +1,21 @@
 <h1>Your Uploads</h1>
 
 <% if @uploads.any? %>
-  <ul>
+  <ul style="list-style: none; padding: 0;">
     <% @uploads.each do |upload| %>
-      <li>
-        <%= upload.file_name %>
-        <%= upload.description %>
-        <%# link_to 'Download', upload.file.url %>
+      <li style="border: 1px solid #ccc; padding: 15px; margin-bottom: 10px; border-radius: 4px;">
+        <div style="margin-bottom: 8px;">
+          <strong><%= upload.file_name %></strong>
+        </div>
+        <div style="margin-bottom: 12px;">
+          <%= upload.description %>
+        </div>
+        
+        <%= button_to 'Download', upload.shortened_url.full_url, method: :get %>
         <%= button_to 'Delete', upload_path(upload), method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
+        
+        <!-- Copy Link Button -->
+        <button onclick="copyToClipboard('<%= upload.shortened_url.short_url %>')">Copy Link</button>
       </li>
     <% end %>
   </ul>
@@ -16,3 +24,13 @@
 <% end %> 
 
 <%= link_to 'Upload a new file', new_upload_path %>
+
+<script>
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(function() {
+      alert('Link copied to clipboard!');
+    }, function(err) {
+      console.error('Could not copy text: ', err);
+    });
+  }
+</script>
