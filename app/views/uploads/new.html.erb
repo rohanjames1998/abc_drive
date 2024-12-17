@@ -1,10 +1,22 @@
 <h1>Upload a new file</h1>
 
 <%= form_with model: @upload, url: uploads_path, method: :post do |f| %>
-  <%= f.label :file_name %>
-  <%= f.text_field :file_name %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.file_field :file %>
-  <%= f.submit 'Upload' %>
+  <div style="margin-bottom: 15px;">
+    <%= f.label :file_name, style: "display: block; margin-bottom: 5px;" %>
+    <%= f.text_field :file_name, style: "width: 300px;" %>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <%= f.label :description, style: "display: block; margin-bottom: 5px;" %>
+    <%= f.text_area :description, style: "width: 300px;" %>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <%= f.label :file, style: "display: block; margin-bottom: 5px;" %>
+    <%= f.file_field :file %>
+  </div>
+
+  <div style="margin-top: 20px;">
+    <%= f.submit 'Upload' %>
+  </div>
 <% end %>
